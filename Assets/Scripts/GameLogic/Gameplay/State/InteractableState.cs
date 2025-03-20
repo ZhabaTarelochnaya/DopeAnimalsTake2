@@ -1,22 +1,19 @@
 ﻿using GameLogic.State;
 using R3;
 
-namespace GameLogic.Gameplay.Entities
+namespace GameLogic.Gameplay.State
 {
     public class InteractableState : IEntityState
     {
-        public int Id { get; }
-        public string InteractableTypeId { get; }
-        public InteractableData Origin { get; }
+        public readonly InteractableData Origin;
+        public string Name => Origin.Name;
+        public int Id => Origin.Id;
+        public EInteractableType Type => Origin.Type;
         public ReactiveProperty<bool> IsInteractable { get; }
-
-        public InteractableState(InteractableData interactableData)
+        public InteractableState(InteractableData data)
         {
-            Origin = interactableData;
-            Id = interactableData.Id;
-            IsInteractable = new ReactiveProperty<bool>(interactableData.IsInteractable);
-
-            IsInteractable.Skip(1).Subscribe(e => interactableData.IsInteractable = e);
+            Origin = data;
+            IsInteractable.Subscribe(b => Origin.IsInteractable = b);
         }
     }
 }

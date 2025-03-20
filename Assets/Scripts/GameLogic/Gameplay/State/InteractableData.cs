@@ -1,11 +1,13 @@
 ﻿using System;
 
-namespace GameLogic.Gameplay.Entities
+namespace GameLogic.Gameplay.State
 {
-    public class InteractableData : IEntity
+    [Serializable]
+    public class InteractableData
     {
-        public int Id {get; set;}
-        public string Type {get; set;}
-        public bool IsInteractable {get; set;}
+        public bool IsInteractable;
+        public string Name;
+        public EInteractableType Type;
+        public int Id;
     }
 }

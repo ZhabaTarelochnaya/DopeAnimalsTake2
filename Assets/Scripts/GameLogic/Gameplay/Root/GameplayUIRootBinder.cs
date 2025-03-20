@@ -2,7 +2,7 @@
 
 namespace GameLogic.Gameplay.Root
 {
-    public class GameplayUIRoot : MonoBehaviour
+    public class GameplayUIRootBinder : MonoBehaviour
     {
         
     }

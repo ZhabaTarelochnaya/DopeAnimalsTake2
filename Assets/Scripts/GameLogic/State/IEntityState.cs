@@ -1,6 +1,6 @@
 ﻿namespace GameLogic.State
 {
-    public class IEntityState
+    public interface IEntityState
     {
         public int Id { get; }
     }

@@ -7,20 +7,26 @@ namespace GameLogic.Gameplay
     public class PlayerController : MonoBehaviour, InputSystem_Actions.IPlayerActions
     {
         bool _isMoving;
+        Transform _transform;
         InputSystem_Actions _controls;
         [SerializeField] CharacterController _body;
+        [SerializeField] CapsuleCollider _interactableTrigger;
         public CinemachineCamera Cam { get; set; }
         [field: SerializeField] public float InitialVelocity { get; private set; }
         [field: SerializeField] public float MaxVelocity { get; private set; }
         [field: SerializeField] public float Acceleration { get; private set; }
+        [field: SerializeField] public float InteractionRange { get; private set; }
+        
         void Awake()
         {
             _controls = new InputSystem_Actions();
             _controls.Player.SetCallbacks(this);
+            _transform = GetComponent<Transform>();
         }
         void Start()
         {
             Cam.Target.TrackingTarget = _body.transform;
+            _interactableTrigger.radius = InteractionRange;
         }
         void OnEnable()
         {
@@ -40,7 +46,7 @@ namespace GameLogic.Gameplay
         {
             if (context.performed)
             {
-                Debug.Log("Interact");
+                
             }
         }
         void Update()

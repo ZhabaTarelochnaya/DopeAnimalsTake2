@@ -1,6 +1,8 @@
 ﻿using System;
 using BaCon;
 using GameLogic.Gameplay.Root;
+using GameLogic.Gameplay.Services;
+using GameLogic.Gameplay.State;
 using GameLogic.State.Command;
 
 namespace GameLogic.Gameplay
@@ -11,6 +13,10 @@ namespace GameLogic.Gameplay
         {
             var cmd = new CommandProcessor();
             container.RegisterInstance<ICommandProcessor>(cmd);
+            
+            var gameplayState = container.Resolve<GameplayState>();
+            var interactionService = new InteractionService(gameplayState.Interactables, cmd);
+            container.RegisterInstance(interactionService);
         }
     }
 }
