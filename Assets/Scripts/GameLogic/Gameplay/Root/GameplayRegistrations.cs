@@ -13,9 +13,13 @@ namespace GameLogic.Gameplay
         {
             var cmd = new CommandProcessor();
             container.RegisterInstance<ICommandProcessor>(cmd);
-            
+
+            var player = container.Resolve<PlayerController>();
             var gameplayState = container.Resolve<GameplayState>();
-            var interactionService = new InteractionService(gameplayState.Interactables, cmd);
+            
+            
+            
+            var interactionService = new InteractionService(gameplayState.Interactables, player, cmd);
             container.RegisterInstance(interactionService);
         }
     }

@@ -1,13 +1,15 @@
 ﻿using GameLogic.Gameplay.Entities;
 using GameLogic.Gameplay.Services;
+using GameLogic.Gameplay.State;
+using GameLogic.State;
 using ObservableCollections;
-using R3;
+
 namespace GameLogic.Gameplay.Root
 {
     public class GameplayRootViewModel
     {
-        public readonly ObservableList<InteractableViewModel> AllInteractables;
-        public GameplayRootViewModel(InteractionService interactionService)
+        public readonly IObservableCollection<InteractableViewModel> AllInteractables;
+        public GameplayRootViewModel(GameplayState gameplayState, InteractionService interactionService)
         {
             AllInteractables = interactionService.AllInteractables;
         }

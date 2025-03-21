@@ -24,6 +24,7 @@ namespace GameLogic.Gameplay.Root
         public Observable<GameplayExitParams> Run(DIContainer gameplayContainer, GameplayEnterParams enterParams)
         {
             GameplayRegistrations.Register(gameplayContainer, enterParams);
+            
             var gameState = gameplayContainer.Resolve<GameState>();
             var gameplayState = gameplayContainer.Resolve<GameplayState>();
             foreach (var interactable in _interactablesParent.GetComponentsInChildren<InteractableBinder>())
@@ -37,8 +38,8 @@ namespace GameLogic.Gameplay.Root
                 var interactableState = new InteractableState(interactableData); 
                 gameplayState.Interactables.Add(interactableState);
             }
-            
             var gameplayViewModelContainer = new DIContainer(gameplayContainer);
+            
             GameplayViewModelRegistrations.Register(gameplayViewModelContainer);
             
             

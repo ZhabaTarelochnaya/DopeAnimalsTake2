@@ -12,9 +12,10 @@ namespace GameLogic.Gameplay.Commands
             switch (command.Type)
             {
                 case EInteractableType.SingleClick: 
-                    InteractionSingleClick.Interact(command.Id); 
-                    break;
-                default: Debug.LogError($"Unimplemented interaction type: {command.Type}");
+                    return InteractionSingleClick.Interact(command.Id); 
+                default: 
+                    Debug.LogError($"Unimplemented interaction type: {command.Type}");
+                    return false;
             }
         }
     }

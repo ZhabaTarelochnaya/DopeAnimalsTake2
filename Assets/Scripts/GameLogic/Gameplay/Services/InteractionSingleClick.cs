@@ -2,9 +2,10 @@
 {
     public static class InteractionSingleClick
     {
-        public static void Interact(int id)
+        public static bool Interact(int id)
         {
             
+            return true;
         }
     }
 }
